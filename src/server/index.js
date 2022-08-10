@@ -1,27 +1,26 @@
-const path = require('path');
-const express = require('express');
-const mockAPIResponse = require('./mockAPI.js');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const fetch = require('node-fetch');
-
-const app = express();
-app.use(cors());
-app.use(express.static('dist'));
-console.log(__dirname);
-
 const dotenv = require('dotenv');
 dotenv.config();
-const API_KEY = process.env.API_KRY;
-console.log(`your api key is ${API_KEY}`);
+var path = require('path')
+const express = require('express')
+const mockAPIResponse = require('./mockAPI.js')
+const fetch = require("node-fetch")
 
-app.use(bodyParser.text());
+const app = express()
 
-const baseURL = 'http://api.meaningcloud.com/sentiment-2.1';
+app.use(express.static('dist'))
+
+console.log(__dirname)
+
+
+//API setup
+const baseURl = 'http://api.meaningcloud.com/sentiment-2.1';
+const API_KEY = process.env.API_KEY 
+console.log(`Your API key is ${process.env.API_KEY}`);
 
 
 app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
+    // res.sendFile('dist/index.html')
+    res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
